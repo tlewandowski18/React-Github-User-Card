@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import UserCard from './UserCard'
 
 class App extends Component {
   constructor() {
@@ -21,8 +22,8 @@ class App extends Component {
     fetch("https://api.github.com/users/tlewandowski18/followers")
       .then(res => res.json())
       .then(res => {
-        // const idList = res.map(item => item.login)
-        this.setState({followers: res})
+        const idList = res.map(item => item.login)
+        this.setState({followers: idList})
       })
       .catch(err => {
         console.log(err)
@@ -32,7 +33,7 @@ class App extends Component {
   render() {
     console.log(this.state)
     return (
-      <div>Happy Coding!</div>
+      <UserCard data={this.state.data} followers={this.state.followers}/>
     )
   }
 }
